@@ -18,10 +18,15 @@ public class CustomerApplication {
 //    }
     @GetMapping("/")
     public GreetResponse greet(){
-        return new GreetResponse("Hello World");
+        return new GreetResponse("Hello World", new Person("Suraj", 24));
+
     }
-    record GreetResponse(String greetNew){
+    record GreetResponse(String greeting, Person person){
     }
+
+    record Person (String name, Integer age){
+    }
+
 
 
 }
