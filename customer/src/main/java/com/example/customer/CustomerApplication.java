@@ -5,17 +5,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @SpringBootApplication
+@RestController
 public class CustomerApplication {
     public static void main(String[] args) {
         SpringApplication.run(CustomerApplication.class,args);
     }
 
+//    @GetMapping("/")
+//    public List<String> hello(){
+//        return List.of("hello", "world");
+//    }
     @GetMapping("/")
-    public List<String> hello(){
-        return List.of("hello", "world");
+    public GreetResponse greet(){
+        return new GreetResponse("Hello World");
+    }
+    record GreetResponse(String greetNew){
     }
 
 
