@@ -1,0 +1,16 @@
+services:
+  database:
+    image: postgres
+    ports:
+      - 5001:5432
+    volumes:
+      - /var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=prisma
+volumes:
+  pgdata:
+
+
+
