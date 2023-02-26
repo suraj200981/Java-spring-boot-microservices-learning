@@ -12,10 +12,6 @@ public class CustomerApplication {
         SpringApplication.run(CustomerApplication.class,args);
     }
 
-//    @GetMapping("/")
-//    public List<String> hello(){
-//        return List.of("hello", "world");
-//    }
     @GetMapping("/")
     public GreetResponse greet(){
         return new GreetResponse("Hello World", new Person("Suraj", 24));
