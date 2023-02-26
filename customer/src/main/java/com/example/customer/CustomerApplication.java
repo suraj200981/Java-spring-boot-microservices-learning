@@ -15,7 +15,6 @@ public class CustomerApplication {
     @GetMapping("/")
     public GreetResponse greet(){
         return new GreetResponse("Hello World", new Person("Suraj", 24));
-
     }
     record GreetResponse(String greeting, Person person){
     }
