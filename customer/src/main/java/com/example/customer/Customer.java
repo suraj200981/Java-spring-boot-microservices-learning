@@ -3,12 +3,11 @@ package com.example.customer;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 //modal for customers
 @Entity
-@Table(name = "customer")
 public class Customer {
     @Id
     @SequenceGenerator(
