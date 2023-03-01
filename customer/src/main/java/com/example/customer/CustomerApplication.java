@@ -3,9 +3,7 @@ package com.example.customer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +27,21 @@ public class CustomerApplication implements CommandLineRunner {
         return customerRepository.findAll();
     }
 
+    record NewCustomerRequest(String firstName, String lastName, String email, Integer age){
+
+
+    }
+    @PostMapping
+    public void addCustomer(@RequestBody NewCustomerRequest request) {
+        System.out.printf(request.firstName, "firstname is this");
+        Customer customer = new Customer();
+        customer.setFirstName(request.firstName);
+        customer.setLastName(request.lastName);
+        customer.setEmail(request.email);
+        customer.setAge(request.age);
+        customerRepository.save(customer);
+
+    }
 
     @Override
     public void run(String... args) throws Exception {
