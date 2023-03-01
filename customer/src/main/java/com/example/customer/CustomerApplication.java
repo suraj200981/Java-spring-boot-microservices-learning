@@ -40,6 +40,12 @@ public class CustomerApplication implements CommandLineRunner {
         customer.setEmail(request.email);
         customer.setAge(request.age);
         customerRepository.save(customer);
+    }
+
+    @DeleteMapping
+    public void deleteCustomer(@RequestParam Integer id){
+
+        customerRepository.deleteById(id);
 
     }
 
