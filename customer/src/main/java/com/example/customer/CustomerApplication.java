@@ -3,6 +3,9 @@ package com.example.customer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,10 +47,9 @@ public class CustomerApplication implements CommandLineRunner {
 
     @DeleteMapping
     public void deleteCustomer(@RequestParam Integer id){
-
         customerRepository.deleteById(id);
-
     }
+
 
     @Override
     public void run(String... args) throws Exception {
