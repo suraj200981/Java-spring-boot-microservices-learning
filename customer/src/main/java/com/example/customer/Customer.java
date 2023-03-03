@@ -77,6 +77,14 @@ public class Customer {
         this.age = age;
     }
 
+
+    //updates with console log information
+    @PostUpdate
+    public void handleUpdate() {
+        System.out.println("Customer with ID " + id + " has been updated.");
+        // Additional logic to handle the update can be added here.
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

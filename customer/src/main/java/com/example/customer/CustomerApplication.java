@@ -1,5 +1,6 @@
 package com.example.customer;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostUpdate;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -34,6 +38,8 @@ public class CustomerApplication implements CommandLineRunner {
 
 
     }
+
+
     @PostMapping
     public void addCustomer(@RequestBody NewCustomerRequest request) {
         System.out.printf(request.firstName, "firstname is this");
@@ -49,6 +55,31 @@ public class CustomerApplication implements CommandLineRunner {
     public void deleteCustomer(@RequestParam Integer id){
         customerRepository.deleteById(id);
     }
+
+    @PostMapping("/update")
+    public void updateCustomer(@RequestBody NewCustomerRequest request, @RequestParam Integer id){
+
+        Customer currentCus = new Customer();
+
+
+        //find customer by ID, i am using Optional as it is a way to handle Null objects
+        //because the value of customer with the specific id could be null
+        Optional<Customer> customer = customerRepository.findById(id);
+        if (customer.isPresent()) {
+            currentCus= customer.get();
+        } else {
+            throw new EntityNotFoundException("Customer with id " + id + " not found");
+        }
+
+        currentCus.setFirstName(request.firstName);
+        currentCus.handleUpdate();
+        customerRepository.save(currentCus);
+
+
+
+
+    }
+
 
 
     @Override
